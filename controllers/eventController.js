@@ -22,4 +22,28 @@ const getEventById = async (req, res) => {
   }
 };
 
-module.exports = { getEvents, getEventById };
+const createEvent = async (req, res) => {
+  try {
+    const { title, description, venue, eventDate, category, price, maxAttendees, tags, bannerImage } = req.body;
+    
+    const event = await Event.create({
+      title,
+      description,
+      venue,
+      eventDate,
+      category,
+      price,
+      maxAttendees,
+      tags,
+      bannerImage,
+      organizerId: req.user._id,
+      status: 'Published'
+    });
+    
+    res.status(201).json(event);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { getEvents, getEventById, createEvent };
