@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
-// Routes placeholders
+// Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/events', require('./routes/eventRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
